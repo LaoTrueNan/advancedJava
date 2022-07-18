@@ -7,7 +7,7 @@ public class CloneApplication {
         sourceOne.setName("sname");
         sourceOne.setSophomore("ssophomore");
         sourceOne.setSenior("ssenior");
-        TargetTwo clone = (TargetTwo) sourceOne.clone();
-        System.out.println(clone);
+        Object clone = sourceOne.clone();
+        System.out.println(clone.getClass().getName());
     }
 }
