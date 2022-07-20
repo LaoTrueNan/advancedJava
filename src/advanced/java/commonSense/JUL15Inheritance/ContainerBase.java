@@ -10,7 +10,7 @@ public abstract class ContainerBase implements Container{
         if(check()){
             System.out.println("poop from super class");
         }else{
-            System.out.println("no eating no pooping");
+            System.out.println("no eating then no pooping");
         }
     }
 }
