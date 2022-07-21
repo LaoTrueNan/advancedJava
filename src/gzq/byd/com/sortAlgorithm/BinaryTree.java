@@ -9,9 +9,9 @@ public class BinaryTree<T> {
     public BinaryTree(TreeNode<T> root){
         this(root,50);
     }
-    public BinaryTree(TreeNode<T> root,int capacity) {
-        this.root = root;
-        this.capacity = capacity;
+    public BinaryTree(TreeNode<T> r,int c) {
+        root = r;
+        capacity = c;
     }
     public T appendNode(T newNode){
         return newNode;
@@ -28,8 +28,8 @@ public class BinaryTree<T> {
     public int getCapacity() {
         return capacity;
     }
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setCapacity(int c) {
+        capacity = c;
     }
     /*三序遍历*/
     public void SFC(Order a){

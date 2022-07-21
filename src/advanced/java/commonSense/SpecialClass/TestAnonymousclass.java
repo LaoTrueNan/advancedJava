@@ -1,9 +1,6 @@
 package advanced.java.commonSense.SpecialClass;
 
-import org.openjdk.jol.info.ClassLayout;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +8,7 @@ public class TestAnonymousclass {
     public static void main(String[] args) {
         ForMap forMap = new ForMap();
 //        anonymous class can only implement interfaces with only 1 method
-        forMap.addItem("first", () -> new Norwich());
+        forMap.addItem("first", () -> new Norwich(2));
         System.out.println(forMap.getOne());
 
 
@@ -44,12 +41,25 @@ public class TestAnonymousclass {
         Thread t2 = new Thread(() -> {
             try {
                 Thread.sleep(1000);
-                System.out.println(1);
+                System.out.println("线程结束");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }, "t2");
         t2.start();
-        System.out.println(ClassLayout.parseInstance(t2).toPrintable());
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+        Yxj<Norwich> norwichYxj = new Yxj<>(Norwich::compareOrder);
+        norwichYxj.addItem(new Norwich(9));
+        norwichYxj.addItem(new Norwich(1));
+        System.out.println(norwichYxj.sort());
+
+//        System.out.println(ClassLayout.parseInstance(t2).toPrintable());
     }
 }
