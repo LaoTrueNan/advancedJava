@@ -1,19 +1,25 @@
 package advanced.java.commonSense.SpecialClass;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ForMap {
+public class ForMap<T> {
 
-    private Map<String, CustomFunctionalInterface> singletonFactories = new HashMap<>(10);
 
-    public void addItem(String beanName,CustomFunctionalInterface object){
-        singletonFactories.put(beanName,object);
+    private T[] data;
+    private int size;
+    private CustomFunctionalInterface<? super T> c;
+
+    public ForMap(CustomFunctionalInterface<T> o) {
+        c = o;
     }
 
-    public Object getOne(){
-        CustomFunctionalInterface fa = singletonFactories.get("first");
-        return fa.returnObj();
+    public void addItem(T n){
+        data[++size] = n;
+    }
+
+    public T getOne(T t1){
+        System.out.println(c);
+        return (T) c.returnObj(t1,"t2");
     }
 }

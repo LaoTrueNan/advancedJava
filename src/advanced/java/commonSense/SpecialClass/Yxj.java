@@ -1,7 +1,7 @@
 package advanced.java.commonSense.SpecialClass;
 
 import java.util.Comparator;
-
+@SuppressWarnings({"unchecked"})
 public class Yxj<T> {
     private T[] data;
     private int size = 0;

@@ -18,12 +18,15 @@ public class Norwich {
 
 
     public int compareOrder(Norwich n) {
-        if (order > n.getOrder()) {
-            return 2;
-        } else if (order == n.getOrder()) {
-            return 0;
-        } else {
-            return -3;
-        }
+        return getOrder()-n.getOrder();
+    }
+
+    public Norwich getANorwich(String m){
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName()+order;
     }
 }
