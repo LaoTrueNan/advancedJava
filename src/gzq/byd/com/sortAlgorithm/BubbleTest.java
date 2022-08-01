@@ -20,21 +20,17 @@ public class BubbleTest {
                 break;
             }
             System.out.format("No %d,",target.length-i);
-            showAll(target);
+            SortUtil.showAll(target);
         }
     }
-    public void showAll(int[] target){
-        for (int i : target) {
-            System.out.format("\t%d",i);
-        }
-        System.out.println();
-    }
+
 
     public static void main(String[] args) {
         BubbleTest bubbleTest = new BubbleTest();
         int [] noSort = new int[]{5,8,2,1,7,3,6,4,9};//14ms
-        System.out.println(System.currentTimeMillis());
+        long startTime = System.currentTimeMillis();
         bubbleTest.bubble(noSort);
-        System.out.println(System.currentTimeMillis());
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println(elapsedTime);
     }
 }

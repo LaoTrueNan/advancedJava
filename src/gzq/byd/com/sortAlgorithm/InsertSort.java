@@ -14,15 +14,10 @@ public class InsertSort {
             }
             a[j+1] = temp;
             System.out.printf("No.%d:\t",i);
-            showAll(a);
+            SortUtil.showAll(a);
         }
     }
-    public void showAll(int[] a){
-        for(int i = 0;i<a.length;i++){
-            System.out.printf("%d ",a[i]);
-        }
-        System.out.println();
-    }
+
 
     public static void main(String[] args) {
         int[]a = new int[]{4,6,17,93,2,348,8,35,87,65,243,356,8};

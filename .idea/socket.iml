@@ -15,7 +15,9 @@
           <root url="file://$MODULE_DIR$/repo" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../apache-tomcat-9.0.56/lib/src/jakarta-tomcat-4.1.12-src.zip!/jakarta-tomcat-4.1.12-src/catalina/src/share" />
+        </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/repo" recursive="false" />
       </library>
     </orderEntry>
