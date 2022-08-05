@@ -8,8 +8,8 @@ public class TestApplication {
 //        if(student.getName().equals("123")){
 //            System.out.println("success");
 //        }1
-        Student student = null;
-        student.toString();
+        String a = "/SSM/helloworld";
+        System.out.println(a.substring(3));
     }
 
 

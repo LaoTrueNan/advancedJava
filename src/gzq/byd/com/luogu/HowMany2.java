@@ -19,6 +19,7 @@ public class HowMany2 {
             a=a/base(bits);
             b=b/base(bits);
 //            cnt()
+
         }
         return res;
     }
