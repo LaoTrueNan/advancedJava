@@ -9,7 +9,7 @@ public class TestMthread {
     public static void main(String[] args) {
         States states = new States();
         String[] as = states.getStates();
-        as[0]="tounima";
+        as[0]="xiugai";
         states.showAll();
     }
 }

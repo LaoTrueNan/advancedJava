@@ -36,7 +36,7 @@ public class RandomAccessFileTest extends TestCase{
             // 在1500w里随机1000w数据
 //            1w=121,414 12bytes
 //            2w=242,959
-            for (int j = 0; j < 20000; j++) {
+            for (int j = 0; j < 10000000; j++) {
                 out.write(prefix + (int) (130000000 * Math.random()) + "\n");
             }
         } catch (Exception e) {

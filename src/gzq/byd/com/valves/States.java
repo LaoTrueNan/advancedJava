@@ -7,6 +7,7 @@ package gzq.byd.com.valves;
 
 public class States {
     private String[] states = {"AK","AL"};
+
     public String[] getStates(){
         return states;
     }

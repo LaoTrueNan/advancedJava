@@ -12,9 +12,11 @@ public class VehicleProxy {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println(method.getName() + " invoked!");
                 Object result = method.invoke(car, args);
-                System.out.println(method.getName() + " ended!Result is :"+result);
+                if(result!=null){
+                    System.out.println(method.getName() + " ended!Result is: "+result);
+                }
                 if(args!=null){
-                    System.out.println(method.getName() + "'s args are like following :" + Arrays.asList(args));
+                    System.out.println(method.getName() + "'s args are like following: " + Arrays.asList(args));
                 }
                 return result;
             }

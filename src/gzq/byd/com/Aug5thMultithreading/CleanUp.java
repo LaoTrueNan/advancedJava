@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CleanUp {
     public static void main(String[] args) {
-
+        long startTime = System.currentTimeMillis();
         Thread t1 = new Thread(() -> {
             try {
                 Thread.sleep(2000);
@@ -51,5 +51,12 @@ public class CleanUp {
             System.out.println("cleaning");
         }, "cleaner");
         thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println(elapsedTime);
     }
 }
