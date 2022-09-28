@@ -23,11 +23,11 @@ public class Sender {
         try (Connection connection = fa.newConnection();
              Channel channel = connection.createChannel();){
             channel.queueDeclare(QUEUE_NAME,false,false,false,null);
-            String message = "aaaa!";
+            String message = String.join(" ",args);
             channel.basicPublish("",QUEUE_NAME,null,message.getBytes(StandardCharsets.UTF_8));
+            System.out.println(message+ " sent");
         } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
-
     }
 }

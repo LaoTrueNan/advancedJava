@@ -10,11 +10,11 @@ public class TryCatchTesterBeta {
     private static Logger logger = Logger.getLogger(TryCatchTesterBeta.class);
     public static void main(String[] args) {
 //        System.out.println(test());
-//        logger.error(test());
+        logger.error(test());
 //        logger.error(Arrays.toString(testQuote()));
-        int b = 5;
-        changint(b);
-        System.out.println(b);
+//        int b = 5;
+//        changint(b);
+//        System.out.println(b);
 //        System.out.println(Arrays.toString(testQuote()));
     }
 
