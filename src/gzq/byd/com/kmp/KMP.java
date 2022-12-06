@@ -21,7 +21,7 @@ public class KMP {
         char[] p = this.getMatch();
         int j=0;
         int k=-1;
-        int next[] = new int[this.getMatch().length];
+        int[] next = new int[this.getMatch().length];
         next[0]=-1;
         while (j<p.length-1) {
             if(k==-1 || p[j]==p[k]){
@@ -44,6 +44,11 @@ public class KMP {
         int i = 0;
         int j = 0;
         int[] next = getNext();
+        System.out.print("next 数组是: ");
+        for (int i1 = 0; i1 < next.length; i1++) {
+            System.out.printf("%d\t",next[i1]);
+        }
+        System.out.println();
         while (i<target.length && j<match.length) {
             if(j==-1 || target[i] == match[j]){
                 j++;
