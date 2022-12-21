@@ -1,4 +1,4 @@
-package gzq.byd.com.luogu;
+package gzq.byd.com.luogu.P1179;
 
 import java.util.Scanner;
 
