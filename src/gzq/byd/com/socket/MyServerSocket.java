@@ -57,7 +57,6 @@ public class MyServerSocket {
                 shutdown=request.getUri().equalsIgnoreCase(SHUTDOWN_COMMAND);
             } catch (IOException e) {
                 e.printStackTrace();
-                continue;
             }
         }
         System.out.println(manager.getString("httpConnector.alreadyDestroyed"));
