@@ -10,6 +10,8 @@ import java.util.concurrent.*;
 public class TestThreadPool {
 
     public static void main(String[] args) {
+
+        // using Executors.newFixedThreadPool(5); is not recommended because of its blocking queue is too large which may lead OOM
         ExecutorService service = new ThreadPoolExecutor(
                 5,
                 10,
