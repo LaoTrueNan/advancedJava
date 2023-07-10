@@ -4,13 +4,11 @@
  */
 package gzq.byd.com.graph;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
- * 洛谷P1359 租用游艇
+ * 洛谷P1359 租用游艇 有点像货车运输LeetCode
+ * s0 利用过河卒的思路
  */
 public class HelloGraph {
 
@@ -18,13 +16,9 @@ public class HelloGraph {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
 
-        Map<Integer, List<Integer>> map = new HashMap<>(n);
+        int [][] tab = new int[n-1][n];
+        for (int i = 0; i < n; i++) {
 
-        for (int i = 1; i < (n-1)*n/2; i++) {
-            for (int j = i+1;j<=n;j++){
-
-                map.put(i,)
-            }
         }
     }
 }
