@@ -12,13 +12,30 @@ import java.util.*;
  */
 public class HelloGraph {
 
+    // 递归
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-
-        int [][] tab = new int[n-1][n];
-        for (int i = 0; i < n; i++) {
-
+        if(n==1 || n==2){
+            System.out.println(scanner.nextInt());
+        }else{
+            int [][] tab = new int[n][n];
+            for (int i = 0; i < n; i++) {
+                for (int j = i+1; j < n ; j++) {
+                    tab[i][j] = scanner.nextInt();
+                }
+            }
+            for (int i = 3; i <= n; i++) {
+                for (int j = 2; j <= i - 1; j++) {
+                    if(tab[0][j-1] + tab[j-1][i-1] < tab[0][i-1]){
+                        tab[0][i-1] = tab[0][j-1] + tab[j-1][i-1];
+                    }
+                }
+            }
+            System.out.println(tab[0][n-1]);
         }
+
+
+
     }
 }
