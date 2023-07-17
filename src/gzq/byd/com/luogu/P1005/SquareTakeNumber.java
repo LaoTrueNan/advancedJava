@@ -190,8 +190,8 @@ public class SquareTakeNumber {
                 String val = power(cnt);
                 for (int j = 0; j < cnt; j++) {
                     int end = j+i-1;
-                    String left = add(mul(String.valueOf(dats[j][end]),val),ret[r][j+1][end]);
-                    String right = add(mul(String.valueOf(dats[j][end-1]),val),ret[r][j][end-1]);
+                    String left = add(mul(String.valueOf(dats[r][j]),val),ret[r][j+1][end]);
+                    String right = add(mul(String.valueOf(dats[r][end]),val),ret[r][j][end-1]);
                     String sub = sub(left,right);
                     if(sub.startsWith("-")){
                         ret[r][j][end] = right;
