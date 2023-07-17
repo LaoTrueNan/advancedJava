@@ -9,58 +9,56 @@ import java.util.Scanner;
 public class SquareTakeNumber {
     public static String sub(String minuend,String subtrahend){
         StringBuilder ret = new StringBuilder();
-        char[] first = minuend.toCharArray();
-        char[] last = subtrahend.toCharArray();
-        int len = Math.max(first.length, last.length);
-
-        int[] res = new int[len];
-        boolean minux = false;
-        int[] iFirst = new int[len];
-        int[] iLast = new int[len];
-        if(first.length==len){
-            for (int i = 0; i < last.length; i++) {
-                iFirst[i] = first[first.length-i-1] -'0';
-                iLast[i] = last[last.length-i-1] - '0';
-            }
-            for (int length = last.length; length < first.length; length++) {
-                iFirst[length] = first[len-length-1] - '0';
-                iLast[length] = 0;
-            }
-        }else{
-            minux = true;
-            for (int i = 0; i < first.length; i++) {
-                iFirst[i] = last[last.length-i-1] -'0';
-                iLast[i] = first[first.length-i-1] - '0';
-            }
-            for (int length = first.length; length < last.length; length++) {
-                iFirst[length] = last[len-length-1] - '0';
-                iLast[length] = 0;
+        String last = subtrahend,first= minuend;
+        // 短的放last,小的放last
+        if (minuend.length()<subtrahend.length()) {
+           last = minuend;
+           first = subtrahend;
+           ret.append("-");
+        }else if(minuend.length()==subtrahend.length()){
+            for (int i = 0; i < minuend.length(); i++) {
+                if(minuend.charAt(i)<subtrahend.charAt(i)){
+                    last = minuend;
+                    first = subtrahend;
+                    ret.append("-");
+                    break;
+                }else if(minuend.charAt(i)>subtrahend.charAt(i)){
+                    break;
+                }
             }
         }
-        for (int i = 0; i < len; i++) {
-            res[i] = 0;
+        char[] a = first.toCharArray();
+        int[] iFirst = new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            iFirst[i] = a[a.length-i-1]-'0';
         }
-        for (int i = 0; i < len-1; i++) {
-            res[i] = (iFirst[i] - iLast[i] + 10)%10;
+        char[] b = last.toCharArray();
+        int[] iLast = new int[b.length];
+        for (int i = 0; i < b.length; i++) {
+            iLast[i] = b[b.length-i-1]-'0';
+        }
+        int[] res = new int[a.length];
+        for (int i = 0; i < b.length; i++) {
+            res[i] = (iFirst[i]-iLast[i]+10)%10;
             if(iFirst[i]<iLast[i]){
                 iFirst[i+1]--;
             }
         }
-        int flag = 0;
-        if(res[len-1]!=0){
-            flag = 1;
-            if(minux){
-                ret.append('-');
+        for (int i = b.length; i<a.length; i++) {
+            if(iFirst[i]<0){
+                iFirst[i]+=10;
+                iFirst[i+1]--;
             }
-            ret.append(Math.abs(res[len-1]));
+            res[i] = iFirst[i];
         }
-        for (int i = len-2; i >=0; i--) {
-            if(flag==1 || res[i]!=0 ){
-                flag = 1;
-                ret.append(res[i]);
+        boolean begin = false;
+        for (int length = a.length-1; length >= 0; length--) {
+            if(begin || res[length]!=0){
+                begin = true;
+                ret.append(res[length]);
             }
         }
-        if(flag==0){
+        if(!begin){
             return "0";
         }
         return ret.toString();
