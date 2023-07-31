@@ -4,23 +4,24 @@
  */
 package gzq.byd.com.luogu.P1005;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SquareTakeNumber {
     public static String sub(String minuend,String subtrahend){
-        StringBuilder ret = new StringBuilder();
+        String ret = "";
         String last = subtrahend,first= minuend;
         // 短的放last,小的放last
         if (minuend.length()<subtrahend.length()) {
            last = minuend;
            first = subtrahend;
-           ret.append("-");
+           ret+='-';
         }else if(minuend.length()==subtrahend.length()){
             for (int i = 0; i < minuend.length(); i++) {
                 if(minuend.charAt(i)<subtrahend.charAt(i)){
                     last = minuend;
                     first = subtrahend;
-                    ret.append("-");
+                    ret+='-';
                     break;
                 }else if(minuend.charAt(i)>subtrahend.charAt(i)){
                     break;
@@ -28,40 +29,33 @@ public class SquareTakeNumber {
             }
         }
         char[] a = first.toCharArray();
-        int[] iFirst = new int[a.length];
-        for (int i = 0; i < a.length; i++) {
-            iFirst[i] = a[a.length-i-1]-'0';
-        }
         char[] b = last.toCharArray();
-        int[] iLast = new int[b.length];
-        for (int i = 0; i < b.length; i++) {
-            iLast[i] = b[b.length-i-1]-'0';
-        }
         int[] res = new int[a.length];
         for (int i = 0; i < b.length; i++) {
-            res[i] = (iFirst[i]-iLast[i]+10)%10;
-            if(iFirst[i]<iLast[i]){
-                iFirst[i+1]--;
+            res[i] = ((a[a.length-i-1]-'0')-(b[b.length-i-1]-'0')+10)%10;
+            if(a[a.length-i-1]<b[b.length-i-1]){
+                a[a.length-i-2]--;
             }
         }
         for (int i = b.length; i<a.length; i++) {
-            if(iFirst[i]<0){
-                iFirst[i]+=10;
-                iFirst[i+1]--;
+            if(a[a.length-i-1]<'0'){
+                a[a.length-i-1]+=10;
+                a[a.length-i-2]--;
             }
-            res[i] = iFirst[i];
+            res[i] = a[a.length-i-1]-'0';
         }
         boolean begin = false;
         for (int length = a.length-1; length >= 0; length--) {
             if(begin || res[length]!=0){
                 begin = true;
-                ret.append(res[length]);
+                ret +=(char) (res[length]+48);
             }
         }
+
         if(!begin){
             return "0";
         }
-        return ret.toString();
+        return ret;
     }
 
 
@@ -93,33 +87,25 @@ public class SquareTakeNumber {
         while(begin>=0 && res[begin]==0){
             begin--;
         }
+        char[] ret = new char[begin + 1];
+        int dex = 0;
         if(begin==-1){
             return "0";
         }
-        StringBuilder ret = new StringBuilder();
+
         for (int i = begin; i >=0; i--) {
-            ret.append(res[i]);
+            ret[dex++] = (char)(res[i]+48);
         }
-        return ret.toString();
+        return new String(ret,0,dex);
     }
 
     public static String mul(String a,String b){
-        StringBuilder ret = new StringBuilder();
         char[] first = a.toCharArray();
         char[] last = b.toCharArray();
-        int[] firsti = new int[first.length];
-        int[] lasti = new int[last.length];
-        for (int i = 0; i < first.length; i++) {
-            firsti[i] = first[first.length-i-1]-'0';
-        }
-        for (int i = 0; i < last.length; i++) {
-            lasti[i] = last[last.length-i-1]-'0';
-        }
-
         int[] res = new int[first.length+ last.length + 1];
         for (int i = 0; i < last.length; i++) {
             for (int j = 0; j < first.length; j++) {
-                res[i+j]+=firsti[j]*lasti[i];
+                res[i+j]+=(first[first.length-j-1]-'0')*(last[last.length-i-1]-'0');
             }
         }
 
@@ -128,31 +114,34 @@ public class SquareTakeNumber {
             res[i]=res[i]%10;
         }
         int flag = 0;
+        int dex = 0;
+        int la = res[res.length-1]==0?res.length-1:res.length;
+        char[] reta = new char[la];
         for (int i = res.length-1; i >=0; i--) {
             if(flag == 1 || res[i]!=0 ){
                 flag=1;
-                ret.append(res[i]);
+                reta[dex++] = ((char) (res[i] + 48));
             }
         }
         if(flag==0){
             return "0";
         }
-        return ret.toString();
+        return new String(reta,0,dex);
     }
 
     public static String power(int exponent){
-
         String ret = "0";
         if(exponent>=31){
             int mod = exponent/31;
             int left = exponent%31;
+            String tmp = "1";
             for (int i = 0; i < mod; i++) {
-                ret = add(ret,"2147483648");
+                tmp = mul(tmp,"2147483648");
             }
+            ret = add(ret,tmp);
 
-            for (int i = 0; i < left; i++) {
-                ret = mul("2",ret);
-            }
+            ret = mul(ret, String.valueOf((int) Math.pow(2, left)));
+
             return ret;
         }else{
             return String.valueOf((int)Math.pow(2,exponent));
@@ -188,11 +177,12 @@ public class SquareTakeNumber {
                 // nth
                 int cnt = col-i+1;
                 String val = power(cnt);
+                String left,right,sub;
                 for (int j = 0; j < cnt; j++) {
                     int end = j+i-1;
-                    String left = add(mul(String.valueOf(dats[r][j]),val),ret[r][j+1][end]);
-                    String right = add(mul(String.valueOf(dats[r][end]),val),ret[r][j][end-1]);
-                    String sub = sub(left,right);
+                    left = add(mul(String.valueOf(dats[r][j]),val),ret[r][j+1][end]);
+                    right = add(mul(String.valueOf(dats[r][end]),val),ret[r][j][end-1]);
+                    sub = sub(left,right);
                     if(sub.startsWith("-")){
                         ret[r][j][end] = right;
                     }else{
@@ -203,5 +193,7 @@ public class SquareTakeNumber {
             result = add(result,ret[r][0][col-1]);
         }
         System.out.println(result);
+        int i = scanner.nextInt();
+        System.out.println(i);
     }
 }

@@ -36,10 +36,12 @@ public class CompressString {
         // bts[n]表示删除n位之后的最短长度
         int[] bts = new int[k+1];
 
+        // a3bdc3d  2
+        //不删除就是ret
         bts[0] = ret;
-//        for (int i = 1; i < k + 1; i++) {
-//            bts[i] = bts[i-1];
-//        }
+        for (int i = 1; i < k + 1; i++) {
+
+        }
         // 两个相同字符时输出
 
         // 两个不同字符时输出
