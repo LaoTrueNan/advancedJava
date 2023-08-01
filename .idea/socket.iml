@@ -19,6 +19,9 @@
         <SOURCES>
           <root url="jar://$MODULE_DIR$/../../apache-tomcat-9.0.56/lib/src/jakarta-tomcat-4.1.12-src.zip!/jakarta-tomcat-4.1.12-src/catalina/src/share" />
           <root url="jar://$MODULE_DIR$/repo/amqp-client-5.9.0-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../downloads/hadoop-3.0.3/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-3.0.3-test-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../downloads/hadoop-3.0.3/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-3.0.3-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../downloads/hadoop-3.0.3/share/hadoop/common/sources/hadoop-common-3.0.3-sources.jar!/" />
         </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/repo" recursive="false" />
       </library>

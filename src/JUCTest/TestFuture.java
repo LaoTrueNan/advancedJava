@@ -5,6 +5,7 @@
 package JUCTest;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 
 /**
@@ -26,6 +27,13 @@ public class TestFuture {
             }
         }, "no1");
 
+        try {
+            t1.start();
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -38,17 +46,25 @@ public class TestFuture {
             }
         }, "no2");
 
+        t2.start();
 
-        CompletableFuture<Void> future = CompletableFuture.supplyAsync(()->{
-            t1.start();
-            return null;
+
+        CompletableFuture<Void> twoSeconds = CompletableFuture.runAsync(()->{
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("I've slept for 5 seconds!");
+        }).thenRun(()->{
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("I've slept for 1 seconds!");
         });
-
-        CompletableFuture<Void> future2 = CompletableFuture.supplyAsync(()->{
-            t2.start();
-            return null;
-        });
-
-
+        twoSeconds.join();
     }
 }
