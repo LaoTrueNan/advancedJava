@@ -24,7 +24,6 @@ public class RetreatFromBridge {
         // odd or even
         // odd soldiers just
         int min=0,max=Integer.MAX_VALUE;
-        //
-
+// after resolution
     }
 }
