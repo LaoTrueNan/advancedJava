@@ -20,11 +20,11 @@ public class RetreatFromBridge {
             soldier[i] = scanner.nextInt();
         }
 
-        // minimum time is the distance between the closest soldier to the middle of the bridge and 0 or
-
+        // minimum time is the distance between the closest soldier to the middle of the bridge and 0 or end of bridge
         // odd or even
         // odd soldiers just
         int min=0,max=Integer.MAX_VALUE;
+        //
 
     }
 }
