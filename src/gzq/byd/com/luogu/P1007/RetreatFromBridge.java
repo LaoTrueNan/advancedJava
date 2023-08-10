@@ -14,6 +14,7 @@ public class RetreatFromBridge {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int bridgeLength = scanner.nextInt();
+        int center = bridgeLength / 2;
         int soldierNum = scanner.nextInt();
         int[] soldier = new int[soldierNum];
         for (int i = 0; i < soldierNum; i++) {
@@ -23,7 +24,26 @@ public class RetreatFromBridge {
         // minimum time is the distance between the closest soldier to the middle of the bridge and 0 or end of bridge
         // odd or even
         // odd soldiers just
-        int min=0,max=Integer.MAX_VALUE;
+        int min=0,max=0;
 // after resolution
+        // left part and right part, min time in which all soldiers retreat towards the half where them at
+        // max time in which all soldiers retreat towards the half where them at
+        for (int i = 0; i < soldierNum; i++) {
+            int i1 = 0,i2=0;
+            if(soldier[i]>center){
+                i1 = bridgeLength+1-soldier[i];
+                i2 = soldier[i];
+            }else{
+                i1 = soldier[i];
+                i2 = bridgeLength+1-soldier[i];
+            }
+            if(i1>min){
+                min = i1;
+            }
+            if(i2>max){
+                max = i2;
+            }
+        }
+        System.out.printf("%d %d",min,max);
     }
 }
