@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class RegexOr {
     public static void main(String[] args) {
         Pattern compile = Pattern.compile("(asdf)");
-        String s = "(* asdf*)  asdf";
+        String s = "(*   asdf  *)  asdf";
         Matcher jin = compile.matcher(s);
         Set<String> tabs = new HashSet<String>();
         while(jin.find()){
@@ -22,7 +22,7 @@ public class RegexOr {
         }
         for (String tab : tabs) {
             System.out.println(tab);
-            s = s.replaceAll("(?<!\\(\\*\\s*)("+tab+")"," \\$$1\\$");
+            s = s.replaceAll("((?<!\\(\\*).)("+tab+")(.(?!\\(\\*))","$1\\$$2\\$$3");
         }
         System.out.println(s);
     }
