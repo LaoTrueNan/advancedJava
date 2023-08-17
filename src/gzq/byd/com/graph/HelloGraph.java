@@ -37,7 +37,7 @@ public class HelloGraph {
 //            System.out.println(tab[0][n-1]);
 //        }
 //
-        String a = "[{\"id\":0,\"label\":\"这12 是中 _a文测试\",\"and\":[{\"变量1\":\"aj d啊\"}],\"=\":{\"变量2\":10048}},{\"id\":0,\"label\":\"这12 是中 _a文测试\",\"and\":[{\"变量1\":\"aj d啊\"}],\"=\":{\"变量2\":10048}}]";
+        String a = "[{\"id\":0,\"label\":\"这12 是中 _a文测试\",\"and\":[{\"变量1\":\"ajd啊\"}],\"=\":{\"变量2\":10048}},{\"id\":0,\"label\":\"这12_a文测试\",\"and\":[{\"变量1\":\"aj d啊\"}],\"=\":{\"变量2\":10048}}]";
         List<String> collect = Arrays.stream(a.split("(?<=\")|(?=\")")).collect(Collectors.toList());
         List<String> result = new ArrayList<>(collect.size());
         boolean inLabel = false;

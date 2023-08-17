@@ -193,7 +193,5 @@ public class SquareTakeNumber {
             result = add(result,ret[r][0][col-1]);
         }
         System.out.println(result);
-        int i = scanner.nextInt();
-        System.out.println(i);
     }
 }
